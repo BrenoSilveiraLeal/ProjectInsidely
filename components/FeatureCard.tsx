@@ -19,7 +19,7 @@ export default function FeatureCard({ Icon, title, description, glowColor = '#63
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       whileHover={{ scale: 1.05, y: -10 }}
-      className="glass p-8 rounded-2xl relative overflow-hidden group"
+      className="glass p-8 rounded-2xl relative overflow-hidden group h-full flex flex-col"
     >
       {/* Glow effect on hover */}
       <div 
