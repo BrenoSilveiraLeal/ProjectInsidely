@@ -93,7 +93,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center px-4 pt-32 pb-20">
+    <section className="relative min-h-[85vh] flex items-center justify-center px-2 sm:px-4 pt-32 pb-20 overflow-hidden">
       {/* Animated gradient background */}
       <motion.div
         animate={{
@@ -112,7 +112,7 @@ export default function HeroSection() {
       {floatingIcons.map(({ Icon, x, y, delay }, i) => (
         <motion.div
           key={i}
-          className="floating-icon absolute text-indigo-400/30"
+          className="floating-icon absolute text-indigo-400/30 hidden sm:block"
           style={{ left: x, top: y }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.3, scale: 1 }}
@@ -129,10 +129,10 @@ export default function HeroSection() {
         </motion.div>
       ))}
 
-      <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center gap-8">
+      <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center gap-6 sm:gap-8 w-full">
         <h1 
           ref={titleRef}
-          className="text-5xl md:text-7xl font-bold leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight px-2"
           style={{ opacity: 0 }}
         >
           {typedText.split('empregos de verdade').map((part, i, arr) => (
@@ -148,7 +148,7 @@ export default function HeroSection() {
         {showSubtitle && (
           <motion.p
             ref={subtitleRef}
-            className="text-lg md:text-xl text-gray-400 max-w-2xl"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-2xl px-2"
             initial="hidden"
             animate="visible"
           >
