@@ -77,8 +77,8 @@ export default function HeroSection() {
     // Floating icons
     anime({
       targets: '.floating-icon',
-      translateY: (el, i) => [0, anime.random(-25, 25)],
-      translateX: (el, i) => [0, anime.random(-18, 18)],
+      translateY: (_el: any, _i: any) => [0, anime.random(-25, 25)],
+      translateX: (_el: any, _i: any) => [0, anime.random(-18, 18)],
       rotate: () => anime.random(-20, 20),
       scale: [1, 1.15, 1],
       opacity: [0.3, 0.6, 0.3],

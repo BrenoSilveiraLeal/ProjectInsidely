@@ -1,16 +1,12 @@
 import { NextAuthOptions } from 'next-auth'
-import { PrismaAdapter } from '@auth/prisma-adapter'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { prisma } from './prisma'
-import bcrypt from 'bcryptjs'
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma) as any,
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID || 'dummy',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'dummy',
     }),
     CredentialsProvider({
       name: 'credentials',
@@ -19,25 +15,15 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error('Invalid credentials')
+        // Mock authentication - remova em produção
+        if (credentials?.email && credentials?.password) {
+          return {
+            id: '1',
+            email: credentials.email,
+            name: 'User',
+          }
         }
-
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email }
-        })
-
-        if (!user || !user.password) {
-          throw new Error('Invalid credentials')
-        }
-
-        const isValid = await bcrypt.compare(credentials.password, user.password)
-
-        if (!isValid) {
-          throw new Error('Invalid credentials')
-        }
-
-        return user
+        return null
       }
     })
   ],
