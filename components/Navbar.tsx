@@ -36,7 +36,7 @@ export default function Navbar() {
             ))}
           </Link>
           <div className="flex gap-1 sm:gap-2 md:gap-6 items-center">
-            <Link href="/about" className="hidden sm:block text-sm hover:text-indigo-400 transition">
+            <Link href="/about" className="text-xs sm:text-sm hover:text-indigo-400 transition">
               <motion.span
                 initial={{ filter: "blur(10px)", opacity: 0 }}
                 animate={{ filter: "blur(0px)", opacity: 1 }}
@@ -45,7 +45,7 @@ export default function Navbar() {
                 Sobre
               </motion.span>
             </Link>
-            <Link href="/faq" className="hidden sm:block text-sm hover:text-indigo-400 transition">
+            <Link href="/faq" className="text-xs sm:text-sm hover:text-indigo-400 transition">
               <motion.span
                 initial={{ filter: "blur(10px)", opacity: 0 }}
                 animate={{ filter: "blur(0px)", opacity: 1 }}
@@ -80,7 +80,7 @@ export default function Navbar() {
             </motion.button>
             <Link 
               href="/auth/signin" 
-              className="hidden sm:block px-4 py-2 text-sm hover:text-indigo-400 transition"
+              className="px-2 sm:px-4 py-2 text-xs sm:text-sm hover:text-indigo-400 transition"
             >
               <motion.span
                 initial={{ filter: "blur(10px)", opacity: 0 }}

@@ -41,8 +41,8 @@ export default function SearchBar() {
   return (
     <div className="w-full relative" style={{ zIndex: 9999 }}>
       <form onSubmit={handleSearch} className="w-full">
-        <div className="bg-white/[0.02] backdrop-blur-sm border border-white/5 rounded-2xl p-2 flex items-center gap-2">
-          <Search className="ml-4 text-gray-400" size={20} />
+        <div className="bg-white/[0.02] backdrop-blur-sm border border-white/5 rounded-2xl p-1.5 sm:p-2 flex items-center gap-1 sm:gap-2">
+          <Search className="ml-2 sm:ml-4 text-gray-400" size={18} />
           <input
             type="text"
             value={query}
@@ -50,11 +50,11 @@ export default function SearchBar() {
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             placeholder={t('search_placeholder')}
-            className="flex-1 bg-transparent px-4 py-4 outline-none text-lg"
+            className="flex-1 bg-transparent px-2 sm:px-4 py-3 sm:py-4 outline-none text-sm sm:text-base lg:text-lg"
           />
           <button
             type="submit"
-            className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl font-medium hover:opacity-90 transition"
+            className="px-3 sm:px-6 lg:px-8 py-2.5 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-xs sm:text-sm font-medium hover:opacity-90 transition whitespace-nowrap"
           >
             {t('search_button')}
           </button>

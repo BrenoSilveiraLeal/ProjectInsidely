@@ -112,7 +112,7 @@ export default function HeroSection() {
       {floatingIcons.map(({ Icon, x, y, delay }, i) => (
         <motion.div
           key={i}
-          className="floating-icon absolute text-indigo-400/30 hidden sm:block"
+          className="floating-icon absolute text-indigo-400/30"
           style={{ left: x, top: y }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.3, scale: 1 }}
