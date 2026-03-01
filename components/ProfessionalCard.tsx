@@ -5,6 +5,7 @@ import anime from 'animejs'
 import { Star, MapPin, Clock, Briefcase } from 'lucide-react'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/LanguageContext'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 
 interface ProfessionalCardProps {
   id: string
@@ -58,6 +59,10 @@ export default function ProfessionalCard({
     })
   }
 
+  const getInitials = (name: string) => {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+  }
+
   return (
     <Link href={`/professional/${id}`}>
       <div
@@ -67,7 +72,10 @@ export default function ProfessionalCard({
         className="glass rounded-2xl p-6 hover:bg-white/10 transition-all cursor-pointer h-full group"
       >
         <div className="flex justify-between items-start mb-4">
-          <div className="text-5xl">{image || '👤'}</div>
+          <Avatar className="h-16 w-16">
+            <AvatarImage src={image} alt={name} />
+            <AvatarFallback>{getInitials(name)}</AvatarFallback>
+          </Avatar>
           {available && (
             <span className="flex items-center gap-1 text-xs text-green-400 glass px-2 py-1 rounded-full">
               <Clock size={12} />
