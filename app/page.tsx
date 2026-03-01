@@ -58,13 +58,13 @@ export default function Home() {
       <SupportButton />
       <ToastContainer />
 
-      <section className="py-20 px-4 relative" style={{ zIndex: 1 }}>
+      <section className="py-12 sm:py-20 px-4 relative" style={{ zIndex: 1 }}>
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('why_choose')} <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Insidely</span>?</h2>
-            <p className="text-xl text-gray-400">{t('why_subtitle')}</p>
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="text-center mb-8 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{t('why_choose')} <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Insidely</span>?</h2>
+            <p className="text-lg sm:text-xl text-gray-400">{t('why_subtitle')}</p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, i) => (
               <AnimatedCardScroll key={feature.title} delay={i * 50}>
                 <FeatureCard Icon={feature.icon} title={feature.title} description={feature.description} glowColor={feature.glowColor} />
@@ -74,13 +74,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 px-4 relative">
+      <section className="py-12 sm:py-20 px-4 relative">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('how_it_works')}</h2>
-            <p className="text-xl text-gray-400">{t('how_subtitle')}</p>
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="text-center mb-8 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{t('how_it_works')}</h2>
+            <p className="text-lg sm:text-xl text-gray-400">{t('how_subtitle')}</p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {steps.map((step, i) => (
               <motion.div key={step.title} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ delay: i * 0.08, duration: 0.4 }} className="glass rounded-2xl p-8 text-center hover:bg-white/10 transition-all group">
                 <motion.div whileHover={{ scale: 1.1, rotate: 360 }} transition={{ duration: 0.5 }} className={`w-20 h-20 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg`}>
@@ -95,13 +95,13 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl -z-10" />
       </section>
 
-      <section className="py-16 px-4">
+      <section className="py-12 sm:py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <AnimatedIcon Icon={TrendingUp} size={32} glowColor="rgba(99, 102, 241, 0.5)" />
-            <h2 className="text-3xl font-bold">{t('trending_professions')}</h2>
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+            <AnimatedIcon Icon={TrendingUp} size={28} glowColor="rgba(99, 102, 241, 0.5)" />
+            <h2 className="text-2xl sm:text-3xl font-bold">{t('trending_professions')}</h2>
           </div>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 sm:gap-4">
             {trendingProfessions.map((profession, i) => (
               <Link key={profession.name} href={`/profession/${encodeURIComponent(profession.name)}`}>
                 <motion.button initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: false, amount: 0.5 }} whileHover={{ scale: 1.05, y: -2 }} transition={{ delay: i * 0.02, duration: 0.3 }} className="glass px-6 py-4 rounded-full hover:bg-white/10 hover:shadow-xl hover:shadow-indigo-500/20 transition-all flex items-center gap-3 group">
@@ -146,13 +146,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
+      <section className="py-12 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <AnimatedIcon Icon={Users} size={32} glowColor="rgba(236, 72, 153, 0.5)" />
-            <h2 className="text-3xl font-bold">{t('available_professionals')}</h2>
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+            <AnimatedIcon Icon={Users} size={28} glowColor="rgba(236, 72, 153, 0.5)" />
+            <h2 className="text-2xl sm:text-3xl font-bold">{t('available_professionals')}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {mockProfessionals.map((pro, i) => (
               <AnimatedCardScroll key={pro.id} delay={i * 50}>
                 <ProfessionalCard {...pro} />
