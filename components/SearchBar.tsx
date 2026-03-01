@@ -68,7 +68,7 @@ export default function SearchBar() {
           exit={{ opacity: 0, y: -10, scale: 0.95 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
           className="absolute top-full mt-4 w-full rounded-xl shadow-2xl border border-white/20 backdrop-blur-xl bg-gradient-to-br from-gray-900/95 via-indigo-900/90 to-purple-900/95"
-          style={{ zIndex: 99999 }}
+          style={{ zIndex: 999999 }}
         >
           {suggestions.map((suggestion, i) => (
             <motion.button

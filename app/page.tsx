@@ -58,7 +58,7 @@ export default function Home() {
       <SupportButton />
       <ToastContainer />
 
-      <section className="py-12 sm:py-20 px-4 relative" style={{ zIndex: 1 }}>
+      <section className="py-12 sm:py-20 px-4 relative" style={{ zIndex: 0 }}>
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="text-center mb-8 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{t('why_choose')} <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Insidely</span>?</h2>

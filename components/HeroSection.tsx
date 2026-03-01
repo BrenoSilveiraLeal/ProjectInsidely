@@ -93,7 +93,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center px-2 sm:px-4 pt-32 pb-20 overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center justify-center px-2 sm:px-4 pt-32 pb-20">
       {/* Animated gradient background */}
       <motion.div
         animate={{
