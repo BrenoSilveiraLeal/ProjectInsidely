@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className="dark">
-      <body className="bg-gray-950 text-white antialiased">
+      <body className="bg-gray-950 text-white antialiased" suppressHydrationWarning>
         <SessionProvider>
           <LanguageProvider>{children}</LanguageProvider>
         </SessionProvider>

@@ -18,10 +18,9 @@ export default function AnimatedIcon({ Icon, size = 40, color = 'currentColor', 
   const handleMouseEnter = () => {
     anime({
       targets: iconRef.current,
-      scale: [1, 1.2],
-      rotate: [0, 10, -10, 0],
-      duration: 600,
-      easing: 'easeOutElastic(1, .6)'
+      scale: [1, 1.15],
+      duration: 400,
+      easing: 'easeOutQuad'
     })
   }
 

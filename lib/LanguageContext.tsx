@@ -14,6 +14,10 @@ const translations = {
   'pt-BR': {
     signin: 'Entrar',
     signup: 'Cadastrar',
+    about: 'Sobre',
+    faq: 'FAQ',
+    hero_title_full: 'Descubra como os empregos realmente são antes de escolher!',
+    hero_title_highlight: 'empregos realmente são',
     hero_title: 'Descubra como são os',
     hero_highlight: 'empregos de verdade',
     hero_title_end: 'antes de escolher',
@@ -53,6 +57,10 @@ const translations = {
   'en': {
     signin: 'Sign In',
     signup: 'Sign Up',
+    about: 'About',
+    faq: 'FAQ',
+    hero_title_full: 'Discover what jobs are really like before you choose!',
+    hero_title_highlight: 'really like',
     hero_title: 'Discover what jobs are',
     hero_highlight: 'really like',
     hero_title_end: 'before you choose',

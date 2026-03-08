@@ -18,10 +18,10 @@ import { useLanguage } from '@/lib/LanguageContext'
 import Link from 'next/link'
 
 const mockProfessionals = [
-  { id: '1', name: 'Ana Silva', jobTitle: 'Senior Software Engineer', company: 'Google', location: 'São Paulo, SP', yearsExperience: 8, rating: 4.9, totalReviews: 127, pricePerCall: 150, image: '👩💻', available: true },
-  { id: '2', name: 'Carlos Santos', jobTitle: 'Product Manager', company: 'Meta', location: 'Rio de Janeiro, RJ', yearsExperience: 6, rating: 4.8, totalReviews: 94, pricePerCall: 200, image: '👨💼', available: true },
-  { id: '3', name: 'Marina Costa', jobTitle: 'UX Designer', company: 'Amazon', location: 'Belo Horizonte, MG', yearsExperience: 5, rating: 5.0, totalReviews: 156, pricePerCall: 120, image: '👩🎨', available: false },
-  { id: '4', name: 'Pedro Oliveira', jobTitle: 'Data Scientist', company: 'Microsoft', location: 'São Paulo, SP', yearsExperience: 7, rating: 4.7, totalReviews: 83, pricePerCall: 180, image: '👨🔬', available: true }
+  { id: '1', name: 'Ana Silva', jobTitle: 'Senior Software Engineer', company: 'Google', location: 'São Paulo, SP', yearsExperience: 8, rating: 4.9, totalReviews: 127, pricePerCall: 150, available: true },
+  { id: '2', name: 'Carlos Santos', jobTitle: 'Product Manager', company: 'Meta', location: 'Rio de Janeiro, RJ', yearsExperience: 6, rating: 4.8, totalReviews: 94, pricePerCall: 200, available: true },
+  { id: '3', name: 'Marina Costa', jobTitle: 'UX Designer', company: 'Amazon', location: 'Belo Horizonte, MG', yearsExperience: 5, rating: 5.0, totalReviews: 156, pricePerCall: 120, available: false },
+  { id: '4', name: 'Pedro Oliveira', jobTitle: 'Data Scientist', company: 'Microsoft', location: 'São Paulo, SP', yearsExperience: 7, rating: 4.7, totalReviews: 83, pricePerCall: 180, available: true }
 ]
 
 const trendingCompanies = ['Google', 'Meta', 'Amazon', 'Microsoft', 'Nubank', 'iFood', 'McDonald\'s', 'Starbucks', 'Renner', 'Drogasil']
@@ -58,32 +58,64 @@ export default function Home() {
       <SupportButton />
       <ToastContainer />
 
-      <section className="py-12 sm:py-20 px-4 relative" style={{ zIndex: 0 }}>
-        <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="text-center mb-8 sm:mb-16">
+      <section className="py-12 sm:py-20 px-4 relative overflow-hidden" style={{ zIndex: 0 }}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto"
+        >
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: false, amount: 0.3 }} 
+            transition={{ duration: 0.6 }} 
+            className="text-center mb-8 sm:mb-16"
+          >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{t('why_choose')} <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Insidely</span>?</h2>
             <p className="text-lg sm:text-xl text-gray-400">{t('why_subtitle')}</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, i) => (
-              <AnimatedCardScroll key={feature.title} delay={i * 50}>
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, x: (i === 0 || i === 1) ? -150 : 150 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: (i === 0 || i === 1) ? -150 : 150 }}
+                viewport={{ once: false, amount: 0.3, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+              >
                 <FeatureCard Icon={feature.icon} title={feature.title} description={feature.description} glowColor={feature.glowColor} />
-              </AnimatedCardScroll>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      <section className="py-12 sm:py-20 px-4 relative">
+      <section className="py-12 sm:py-20 px-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="text-center mb-8 sm:mb-16">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.5 }} 
+            whileInView={{ opacity: 1, scale: 1 }} 
+            viewport={{ once: false, amount: 0.9 }} 
+            transition={{ duration: 0.7, type: "spring", bounce: 0.4 }} 
+            className="text-center mb-8 sm:mb-16"
+          >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{t('how_it_works')}</h2>
             <p className="text-lg sm:text-xl text-gray-400">{t('how_subtitle')}</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {steps.map((step, i) => (
-              <motion.div key={step.title} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} transition={{ delay: i * 0.08, duration: 0.4 }} className="glass rounded-2xl p-8 text-center hover:bg-white/10 transition-all group">
-                <motion.div whileHover={{ scale: 1.1, rotate: 360 }} transition={{ duration: 0.5 }} className={`w-20 h-20 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg`}>
+              <motion.div 
+                key={step.title} 
+                initial={{ opacity: 0, y: 60 }} 
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.5 }} 
+                transition={{ duration: 0.5, delay: i * 0.1 }} 
+                className="glass rounded-2xl p-10 text-center hover:bg-white/10 transition-all group card-hover min-h-[400px] flex flex-col justify-center"
+              >
+                <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }} className={`w-20 h-20 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg`}>
                   <step.icon size={40} />
                 </motion.div>
                 <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
@@ -92,19 +124,28 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl -z-10" />
       </section>
 
       <section className="py-12 sm:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-6 sm:mb-8">
-            <AnimatedIcon Icon={TrendingUp} size={28} glowColor="rgba(99, 102, 241, 0.5)" />
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.5 }} transition={{ duration: 0.6 }}>
+              <AnimatedIcon Icon={TrendingUp} size={28} glowColor="rgba(99, 102, 241, 0.5)" />
+            </motion.div>
             <h2 className="text-2xl sm:text-3xl font-bold">{t('trending_professions')}</h2>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             {trendingProfessions.map((profession, i) => (
               <Link key={profession.name} href={`/profession/${encodeURIComponent(profession.name)}`}>
-                <motion.button initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: false, amount: 0.5 }} whileHover={{ scale: 1.05, y: -2 }} transition={{ delay: i * 0.02, duration: 0.3 }} className="glass px-6 py-4 rounded-full hover:bg-white/10 hover:shadow-xl hover:shadow-indigo-500/20 transition-all flex items-center gap-3 group">
+                <motion.button 
+                  initial={{ opacity: 0, scale: 0, rotate: -180 }} 
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0, rotate: 180 }}
+                  viewport={{ once: false, amount: 0.5, margin: "-100px" }} 
+                  whileHover={{ scale: 1.1, y: -4, rotate: 5 }} 
+                  transition={{ delay: i * 0.05, duration: 0.5, type: "spring", stiffness: 200 }} 
+                  className="glass px-6 py-4 rounded-full hover:bg-white/10 hover:shadow-xl hover:shadow-indigo-500/20 transition-all flex items-center gap-3 group"
+                >
                   <AnimatedIconHover icon={profession.icon} size={20} />
                   <span className="font-medium">{profession.name}</span>
                 </motion.button>
@@ -117,13 +158,23 @@ export default function Home() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <AnimatedIcon Icon={Building2} size={32} glowColor="rgba(139, 92, 246, 0.5)" />
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.5 }} transition={{ duration: 0.6 }}>
+              <AnimatedIcon Icon={Building2} size={32} glowColor="rgba(139, 92, 246, 0.5)" />
+            </motion.div>
             <h2 className="text-3xl font-bold">{t('trending_companies')}</h2>
           </div>
           <div className="flex flex-wrap gap-4">
             {trendingCompanies.map((company, i) => (
               <Link key={company} href={`/company/${encodeURIComponent(company)}`}>
-                <motion.button initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: false, amount: 0.5 }} whileHover={{ scale: 1.05, y: -2 }} transition={{ delay: i * 0.02, duration: 0.3 }} className="glass px-6 py-4 rounded-full hover:bg-white/10 hover:shadow-xl hover:shadow-purple-500/20 transition-all font-medium">
+                <motion.button 
+                  initial={{ opacity: 0, y: 50, scale: 0.5 }} 
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 50, scale: 0.5 }}
+                  viewport={{ once: false, amount: 0.5, margin: "-100px" }} 
+                  whileHover={{ scale: 1.1, y: -4 }} 
+                  transition={{ delay: i * 0.05, duration: 0.5, type: "spring", bounce: 0.5 }} 
+                  className="glass px-6 py-4 rounded-full hover:bg-white/10 hover:shadow-xl hover:shadow-purple-500/20 transition-all font-medium"
+                >
                   {company}
                 </motion.button>
               </Link>
@@ -146,17 +197,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-20 px-4">
+      <section className="py-12 sm:py-20 px-4 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -100 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: false, amount: 0.5 }} 
+            transition={{ duration: 0.8 }}
+            className="flex items-center gap-3 mb-6 sm:mb-8"
+          >
             <AnimatedIcon Icon={Users} size={28} glowColor="rgba(236, 72, 153, 0.5)" />
             <h2 className="text-2xl sm:text-3xl font-bold">{t('available_professionals')}</h2>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {mockProfessionals.map((pro, i) => (
-              <AnimatedCardScroll key={pro.id} delay={i * 50}>
+              <motion.div
+                key={pro.id}
+                initial={{ opacity: 0, y: 80, rotateX: -30 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, y: 80, rotateX: -30 }}
+                viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                transition={{ duration: 0.7, delay: i * 0.15, type: "spring" }}
+              >
                 <ProfessionalCard {...pro} />
-              </AnimatedCardScroll>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -164,19 +228,37 @@ export default function Home() {
 
       <SubscriptionPlans />
 
-      <section className="py-20 px-4 bg-gradient-to-b from-transparent to-indigo-500/5">
+      <section className="py-20 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent -z-10" />
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">Números que Impressionam</h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-12"
+          >
+            Números que Impressionam
+          </motion.h2>
           <div className="grid md:grid-cols-4 gap-8">
-            <StatsCounter end={1500} label="Profissionais" suffix="+" />
-            <StatsCounter end={500} label="Empresas" suffix="+" />
-            <StatsCounter end={10000} label="Conversas" suffix="+" />
-            <StatsCounter end={98} label="Satisfação" suffix="%" />
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.5 }} transition={{ duration: 0.6, delay: 0 }}>
+              <StatsCounter end={1500} label="Profissionais" suffix="+" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.5 }} transition={{ duration: 0.6, delay: 0.15 }}>
+              <StatsCounter end={500} label="Empresas" suffix="+" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.5 }} transition={{ duration: 0.6, delay: 0.3 }}>
+              <StatsCounter end={10000} label="Conversas" suffix="+" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.5 }} transition={{ duration: 0.6, delay: 0.45 }}>
+              <StatsCounter end={98} label="Satisfação" suffix="%" />
+            </motion.div>
           </div>
         </div>
       </section>
 
       <section className="py-16 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent -z-10" />
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: false, amount: 0.3 }} transition={{ duration: 0.4 }} className="glass rounded-3xl p-8">
             <Sparkles className="mx-auto mb-4 text-indigo-400" size={40} />

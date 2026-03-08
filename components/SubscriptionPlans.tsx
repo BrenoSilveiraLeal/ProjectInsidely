@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Lock } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const plans = [
   {
@@ -87,14 +88,25 @@ export default function SubscriptionPlans() {
   return (
     <div className="py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <motion.h2 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl font-bold text-center mb-12"
+        >
           Escolha seu plano
-        </h2>
+        </motion.h2>
         
         <div className="grid md:grid-cols-3 gap-8">
-          {plans.map((plan) => (
-            <div
+          {plans.map((plan, i) => (
+            <motion.div
               key={plan.name}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              whileHover={{ y: -10, scale: 1.02 }}
               className={`glass rounded-2xl p-8 ${
                 plan.popular ? 'border-2 border-blue-500 shadow-lg shadow-blue-500/20 scale-105' : ''
               }`}
@@ -127,7 +139,7 @@ export default function SubscriptionPlans() {
               >
                 {loading === plan.name ? 'Processando...' : 'Assinar'}
               </button>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

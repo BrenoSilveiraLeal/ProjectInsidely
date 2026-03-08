@@ -1,8 +1,8 @@
 'use client'
 
-import { Star, MapPin, Briefcase, MessageCircle, Clock, DollarSign, Lock, CheckCircle, Calendar } from 'lucide-react'
+import { Star, MapPin, Briefcase, MessageCircle, Clock, DollarSign, Lock, CheckCircle, Calendar, User } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, use } from 'react'
 import Navbar from '@/components/Navbar'
 
 const professionalData: Record<string, any> = {
@@ -64,11 +64,12 @@ const professionalData: Record<string, any> = {
   }
 }
 
-export default function ProfessionalProfile({ params }: { params: { id: string } }) {
+export default function ProfessionalProfile({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
   const [showFullExperience, setShowFullExperience] = useState(false)
   const [selectedDuration, setSelectedDuration] = useState(30)
   
-  const professional = professionalData[params.id] || professionalData['1']
+  const professional = professionalData[id] || professionalData['1']
   const selectedPrice = professional.prices.find((p: any) => p.duration === selectedDuration)
 
   return (
@@ -86,7 +87,9 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
               className="glass rounded-2xl p-8"
             >
               <div className="flex items-start gap-6">
-                <div className="text-7xl">{professional.image}</div>
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-3xl font-bold">
+                  {professional.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)}
+                </div>
                 <div className="flex-1">
                   <h1 className="text-3xl font-bold mb-2">{professional.name}</h1>
                   <p className="text-xl text-gray-400 mb-1">{professional.jobTitle}</p>

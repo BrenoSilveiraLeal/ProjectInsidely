@@ -62,9 +62,10 @@ export default function RealityCheck() {
     <section className="py-16 px-4 relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 0.8, rotateX: 45 }}
+          whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -81,12 +82,12 @@ export default function RealityCheck() {
           {realityChecks.map((check, i) => (
             <motion.div
               key={check.profession}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="glass rounded-2xl p-6 hover:bg-white/10 hover:shadow-2xl hover:shadow-orange-500/20 transition-all group"
+              initial={{ opacity: 0, rotateY: -90, x: -200 }}
+              whileInView={{ opacity: 1, rotateY: 0, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: i * 0.2, duration: 0.8, type: "spring" }}
+              whileHover={{ y: -12, scale: 1.03 }}
+              className="glass rounded-2xl p-6 hover:bg-white/10 hover:shadow-2xl hover:shadow-orange-500/20 transition-all group card-hover"
             >
               <h3 className="text-2xl font-bold mb-4 group-hover:text-orange-400 transition">
                 {check.question}

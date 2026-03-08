@@ -27,14 +27,14 @@ const floatingIcons = [
 ]
 
 export default function HeroSection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [typedText, setTypedText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
   const [showSubtitle, setShowSubtitle] = useState(false)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const searchRef = useRef<HTMLDivElement>(null)
-  const fullText = 'Descubra como são os empregos de verdade antes de escolher'
+  const fullText = t('hero_title_full')
 
   useEffect(() => {
     // Typing effect
@@ -90,7 +90,7 @@ export default function HeroSection() {
     })
 
     return () => clearInterval(timer)
-  }, [])
+  }, [language, t])
 
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center px-2 sm:px-4 pt-32 pb-20">
@@ -121,7 +121,6 @@ export default function HeroSection() {
             scale: 1.5, 
             opacity: 0.8,
             filter: 'drop-shadow(0 0 20px rgba(99, 102, 241, 0.8))',
-            rotate: 360,
             transition: { duration: 0.6 }
           }}
         >
@@ -129,17 +128,17 @@ export default function HeroSection() {
         </motion.div>
       ))}
 
-      <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center gap-6 sm:gap-8 w-full">
+      <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center justify-between gap-6 sm:gap-8 w-full" style={{ minHeight: '400px' }}>
         <h1 
           ref={titleRef}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight px-2"
           style={{ opacity: 0 }}
         >
-          {typedText.split('empregos de verdade').map((part, i, arr) => (
+          {typedText.split(t('hero_title_highlight')).map((part, i, arr) => (
             i < arr.length - 1 ? (
               <span key={i}>
                 {part}
-                <span className="shiny-text">empregos de verdade</span>
+                <span className="shiny-text">{t('hero_title_highlight')}</span>
               </span>
             ) : part
           ))}
@@ -148,25 +147,12 @@ export default function HeroSection() {
         {showSubtitle && (
           <motion.p
             ref={subtitleRef}
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-2xl px-2"
-            initial="hidden"
-            animate="visible"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-2xl px-2 flex-1 flex items-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            {t('hero_subtitle').split(' ').map((word, wordIndex) => (
-              <span key={wordIndex} style={{ display: 'inline-block', marginRight: '0.25em' }}>
-                {word.split('').map((char, charIndex) => (
-                  <motion.span
-                    key={charIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.15, delay: (wordIndex * 5 + charIndex) * 0.015 }}
-                    style={{ display: 'inline-block' }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span>
-            ))}
+            {t('hero_subtitle')}
           </motion.p>
         )}
 
